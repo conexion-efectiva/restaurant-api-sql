@@ -3,7 +3,7 @@ const passport = require('passport')
 const router = express.Router()
 const AuthController = require('../controllers/AuthController')
 const validateBody = require('../middleware/validateBody')
-const { authLoginSchema } = require('../validators/authValidator')
+const { authLoginSchema } = require('../validators/authVaalidator')
 const { userSchema } = require('../validators/userValidator')
 
 router.post(
