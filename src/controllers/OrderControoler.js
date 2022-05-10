@@ -44,8 +44,8 @@ class OrderController {
     if (existOrden == null) {
       res.status(404).json({ message: 'Not found' })
     }
-
-    const order = OrderService.getInstance().update(req.body)
+    let order = { ...req.body, _id: req.params.id }
+    order = await OrderService.getInstance().update(req.body)
     res.json(order)
   }
 

@@ -4,7 +4,6 @@ const ordenSchema = joi.object({
   creationDate: joi.string().required(),
   devilerDate: joi.string().required(),
   status: joi.string().required(),
-  complete: joi.string().required(),
   orderType: joi.string().required(),
 })
 

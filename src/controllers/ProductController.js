@@ -1,4 +1,4 @@
-const ProductService = require('../services/ProoductServices')
+const ProductService = require('../services/ProductServices')
 
 /**
  * @type ProductController
@@ -39,12 +39,13 @@ class ProductController {
    */
 
   async put(req, res) {
-    const existentProduct = await ProductService.getInstance().get(req.body._id)
+    const existentProduct = await ProductService.getInstance().get(req.params.id)
     if (existentProduct == null) {
       res.status(404).json({ message: 'Not found' })
     }
 
-    const product = await ProductService.getInstance().update(req.body)
+    let product = { ...req.body, _id: req.params.id }
+    product = await ProductService.getInstance().update(product)
 
     res.json(product)
   }
