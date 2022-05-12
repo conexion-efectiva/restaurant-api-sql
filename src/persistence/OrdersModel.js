@@ -14,7 +14,7 @@ const OrdersSchema = mongoose.Schema({
   deliverDate: String,
   status: String,  
   orderType: String,
-  produt:[ProductsSchema],
+  product:[ProductsSchema],
 })
 
 const ordersModel = mongoose.model('orden', OrdersSchema)

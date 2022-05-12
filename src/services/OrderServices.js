@@ -14,18 +14,18 @@ class OrdenService {
     return await orderModel.find()
   }
 
-  async update(orden) {
-    await orderModel.updateOne({ _id: orden.id }, orden)
-    return orden
+  async update(order) {
+    await orderModel.updateOne({ _id: order._id }, order)
+    return order
   }
 
-  async insert(orden) {
-    const result = await orderModel.create(orden)
+  async insert(order) {
+    const result = await orderModel.create(order)
     return result.toObject()
   }
 
   async delete(id) {
-    return await orderModel.delete({ _id: id })
+    return await orderModel.deleteOne({ _id: id })
   }
 
   static getInstance() {

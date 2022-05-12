@@ -3,7 +3,7 @@ const jwtAuthenticationMiddleware = require('../middleware/jwtAuthentication')
 const router =express.Router()
 const validateBody = require('../middleware/validateBody')
 const OrderController=require('../controllers/OrderControoler')
-const {ordenSchema} =require('../persistence/OrdersModel')
+const {ordenSchema} =require('../validators/orderValidator') // esto esta mal, tiene que ser de orden validator
 
 router.get('/order',jwtAuthenticationMiddleware,(req,res) =>OrderController.getInstance().getList(req,res))
 router.get('/order/:id', jwtAuthenticationMiddleware,(req,res)=>OrderController.getInstance().getOne(req,res))
