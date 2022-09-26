@@ -38,7 +38,7 @@ class AuthController {
             return next(error)
           }
 
-          const body = { _id: user._id, email: user.email }
+          const body = { userId: user.userId, email: user.email }
           const token = jwt.sign({ user: body }, process.env.TOKEN_SECRET)
 
           return res.json({ token })

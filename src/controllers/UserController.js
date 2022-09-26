@@ -41,11 +41,12 @@ class UserController {
    * @param {import('express').Response} res
    */
   async put(req, res) {
-    const existentUser = await UserService.getInstance().get(req.body._id)
+    const existentUser = await UserService.getInstance().get(req.params.id)
     if (existentUser == null) {
       res.status(404).json({})
       return
     }
+    req.body.userId = req.params.id
     const user = await UserService.getInstance().update(req.body)
     res.json(user)
   }
@@ -62,7 +63,7 @@ class UserController {
       return
     }
 
-    UserService.getInstance().delete(req.params.id)
+    await UserService.getInstance().delete(req.params.id)
     res.json(existentUser)
   }
 

@@ -1,5 +1,5 @@
 {
-  "name": "first-api",
+  "name": "restaurant-api-sql",
   "version": "1.0.0",
   "description": "primera api",
   "main": "index.js",
@@ -21,8 +21,9 @@
     "express": "^4.17.2",
     "joi": "^17.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.1.2",
-    "passport": "^0.5.2",
+    "knex": "^2.3.0",
+    "mysql2": "^2.3.3",
+    "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0"
   },
