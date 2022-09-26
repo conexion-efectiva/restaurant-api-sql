@@ -1,4 +1,4 @@
-const OrderService = require('../services/OrderServices')
+const OrderService = require('../services/OrderService')
 
 /**
  * @type ProductController
@@ -44,7 +44,7 @@ class OrderController {
     if (existOrden == null) {
       res.status(404).json({ message: 'Not found' })
     }
-    let order = { ...req.body, _id: req.params.id }
+    let order = { ...req.body, orderId: req.params.id }
     order = await OrderService.getInstance().update(order)
     res.json(order)
   }

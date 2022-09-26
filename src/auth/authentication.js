@@ -1,8 +1,8 @@
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
-const UserModel = require('../persistence/UserModel')
 const JwtStrategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
+const UserService = require('../services/UserService')
 
 function initializeAuthentication() {
   passport.use(
@@ -14,7 +14,7 @@ function initializeAuthentication() {
       },
       async (email, password, done) => {
         try {
-          const user = await UserModel.create({ email, password })
+          const user = await UserService.getInstance().insert({ email, password })
           return done(null, user)
         } catch (error) {
           done(error)
@@ -32,12 +32,11 @@ function initializeAuthentication() {
       },
       async (email, password, done) => {
         try {
-          const user = await UserModel.findOne({ email })
+          const user = await UserService.getInstance().getByEmail(email)
           if (!user) {
             return done(null, false, { message: 'User not found' })
           }
-
-          const validate = await user.isValidPassword(password)
+          const validate = await UserService.getInstance().isValidPassword(user, password)
           if (!validate) {
             return done(null, false, { message: 'Wrong password' })
           }
