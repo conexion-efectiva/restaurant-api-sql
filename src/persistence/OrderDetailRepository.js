@@ -4,7 +4,7 @@ const knex = require('knex').knex(config)
 
 let instance = null
 class OrderDetailRepository {
-    async getByOrderId(orderId) {
+    async listByOrderId(orderId) {
         return await knex.select('detailId', 'orderId', 'productId')
             .from('orderDetails')
             .where({

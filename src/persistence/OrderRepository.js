@@ -16,7 +16,7 @@ class OrderRepository {
             return null
         }
 
-        const orderDetails = await OrderDetailRepository.getInstance().getByOrderId(orderId)
+        const orderDetails = await OrderDetailRepository.getInstance().listByOrderId(orderId)
 
         order.details = orderDetails;
         
@@ -30,7 +30,7 @@ class OrderRepository {
         .from('orders')
 
         for(let i = 0; i < orders.length; i++) {
-            const details = OrderDetailRepository.getInstance().getByOrderId(orders[i].orderId)
+            const details = await OrderDetailRepository.getInstance().listByOrderId(orders[i].orderId)
             orders[i].details = details
         }
 
